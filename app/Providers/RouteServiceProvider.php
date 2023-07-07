@@ -26,31 +26,34 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
+        // RateLimiter::for('api', function (Request $request) {
+        //     return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+        // });
+        // $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::middleware('api')
-                ->prefix('api')
+            Route::prefix('api')
+                ->middleware('api')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
-            
-            
-            Route::prefix('owner')
-            ->as('owner.')
-            ->middleware('web')
-            ->group(base_path('routes/owner.php'));
 
             Route::prefix('admin')
-            ->as('admin.')
-            ->middleware('web')
-            ->group(base_path('routes/admin.php'));
+                ->as('admin.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/admin.php'));  
 
+            Route::prefix('owner')
+                ->as('owner.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/owner.php'));
 
             Route::prefix('/')
-            ->as('user.')
-            ->middleware('web')
-            ->group(base_path('routes/web.php'));
+                ->as('user.')
+                ->middleware('web')
+                ->namespace($this->namespace)
+                ->group(base_path('routes/web.php'));    
         });
     }
 }
