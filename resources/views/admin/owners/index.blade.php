@@ -4,13 +4,15 @@
            <div class="text-red-400">オーナー管理</div>
         </h2>
     </x-slot>
-
+    
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white  overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <section class="text-gray-600 body-font">
                         <div class="container px-5 mx-auto">
+                          <!-- toasterメッセージ -->  
+                          <x-toastr status="session('status')" />
                            <div class="flex justify-end mb-4">
                             <button onclick="location.href='{{ route('admin.owners.create') }}'" class=" text-white bg-green-400 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">新規登録</button>
                            </div>
@@ -24,6 +26,7 @@
                                   <th class="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                                 </tr>
                               </thead>
+                              <!-- オーナー登録の一覧表示 -->
                               <tbody>
                                 @foreach($owners as $owner)
                                 <tr>
