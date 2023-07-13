@@ -77,7 +77,25 @@ class OwnersController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
+            'password' => ['required','string', 'confirmed', 'min:8'],
+        ]);
+
+        $owner = Owner::findOrFail($id);
+        $owner->name = $request->name;
+        $owner->email = $request->email;
+        $owner->password = Hash::make($request->password);
+
+        $owner->save();
+
+         // toasterに受け渡す値
+         return redirect()
+         ->route('admin.owners.index')
+         ->with(['message' => 'オーナー登録を更新しました。',
+                'status' => 'info']);
     }
 
     /**
@@ -85,6 +103,6 @@ class OwnersController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        dd($id);
     }
 }
