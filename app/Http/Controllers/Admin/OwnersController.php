@@ -8,6 +8,8 @@ use App\Models\Owner;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use Throwable;
+use Illuminate\Support\Facades\Log;
 
 class OwnersController extends Controller
 {
@@ -43,6 +45,10 @@ class OwnersController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
             'password' => ['required','string', 'confirmed', 'min:8'],
         ]);
+
+        try{}catch(Throwable $e){
+            Log::error($e);
+        }
 
         Owner::create([
             'name' => $request->name,
