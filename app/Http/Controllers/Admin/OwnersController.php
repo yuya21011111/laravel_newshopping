@@ -55,10 +55,10 @@ class OwnersController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password)
                 ]);
-
+                dd($owner->shop_name);
                 Shop::create([
                     'owner_id' => $owner->id,
-                    'name' => '店名を入力して下さい',
+                    'name' => $request->shop_name,
                     'information' => '',
                     'filename' => '',
                     'is_selling' => true,
@@ -91,6 +91,8 @@ class OwnersController extends Controller
     public function edit(string $id)
     {
         $owner = Owner::findOrFail($id);
+
+        // dd($owner->shop->name);
         return view('admin.owners.edit',compact('owner'));
     }
 
@@ -102,7 +104,7 @@ class OwnersController extends Controller
        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:owners'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['required','string', 'confirmed', 'min:8'],
         ]);
 
