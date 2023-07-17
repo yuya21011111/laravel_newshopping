@@ -55,7 +55,7 @@ class OwnersController extends Controller
                     'email' => $request->email,
                     'password' => Hash::make($request->password)
                 ]);
-                dd($owner->shop_name);
+                // dd($owner->shop_name);
                 Shop::create([
                     'owner_id' => $owner->id,
                     'name' => $request->shop_name,
