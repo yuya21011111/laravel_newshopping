@@ -19,12 +19,12 @@
                             @if($shop->is_selling)
                             <span class="border p-2 rounded-md bg-blue-400 text-white">販売中
                             @else
-                            <span class="border p-2 rounded-md bg-red-400 text-white">販売中
+                            <span class="border p-2 rounded-md bg-red-400 text-white">停止中
                             @endif
                         </div>
                      <div class="text-xl">{{ $shop->name }}</div>
                      <!-- 画像表示 -->
-                     <x-shop-thumbnail />
+                     <x-shop-thumbnail :filename="$shop->filename" />
                     </div>
                     </a>
                    </div>

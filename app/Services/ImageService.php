@@ -12,7 +12,7 @@ class ImageService {
     $fileName = uniqid(rand().'');
     $extension = $imageFile->extension();
     $fileNameToStore = $fileName.'.'.$extension;
-    dd($extension,$fileNameToStore);
+    // dd($extension,$fileNameToStore);　
 
     Storage::putFileAs('public/' . $folderName . '/' , $file, $fileNameToStore );
     return $fileNameToStore;

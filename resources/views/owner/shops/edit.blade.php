@@ -35,7 +35,7 @@
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative">
                                     <div class="w-32">
-                                        <x-shop-thumbnail />
+                                        <x-shop-thumbnail :filename="$shop->filename" />
                                     </div>
                                 </div>
                             </div>
@@ -53,10 +53,10 @@
                             <div class="p-2 w-1/2 mx-auto">
                                 <div class="relative flex justify-around">
                                     <div><input type="radio" name="is_selling" value="1" class="mr-2"
-                                        @if ($shop->is_selling === 1) {checked} @endif />販売中
+                                        @if ($shop->is_selling == '1') { checked } @endif />販売中
                                     </div>
                                     <div><input type="radio" name="is_selling" value="0" class="mr-2"
-                                        @if ($shop->is_selling === 0) {checked} @endif />停止中
+                                        @if ($shop->is_selling == '0') { checked } @endif />停止中
                                     </div>
                                 </div>
                             </div>
