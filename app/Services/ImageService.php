@@ -10,7 +10,7 @@ class ImageService {
         $file = $imageFile;
     }
     $fileName = uniqid(rand().'');
-    $extension = $imageFile->extension();
+    $extension = $file->extension();
     $fileNameToStore = $fileName.'.'.$extension;
     // dd($extension,$fileNameToStore);　
 
