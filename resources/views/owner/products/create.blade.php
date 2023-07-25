@@ -121,15 +121,18 @@
 
         images.forEach(image => { // 1つずつ繰り返す
             image.addEventListener('click', function(e) { // クリックしたら
+                console.log(e.target.dataset)
                 let imageName = e.target.dataset.id.substr(0, 6) //data-idの6文字
                 if ('image4' == imageName) { // image5がimage4としてなるため記載
                     count = ++count
                     if (count > 1) {
-                        imageName = 'image5'
                         console.log(imageName)
+                        imageName = 'image5'
                     }
                 }
                 let imageId = e.target.dataset.id.replace(imageName + '_', '') // 6文字カット 
+                
+                console.log(imageId)
                 if (imageId.length >= 8) {
                     imageId = imageId.slice(7);
                 }
