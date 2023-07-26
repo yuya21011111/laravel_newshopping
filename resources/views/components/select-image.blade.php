@@ -1,9 +1,19 @@
 @php 
-  if($name === 'image1'){ $modal = 'modal-1'; }
-  if($name === 'image2'){ $modal = 'modal-2'; }
-  if($name === 'image3'){ $modal = 'modal-3'; }
-  if($name === 'image4'){ $modal = 'modal-4'; }
-  if($name === 'image5'){ $modal = 'modal-5'; }
+  if($name === 'image1'){ 
+    $modal = 'modal-1'; 
+  }
+  elseif($name === 'image2'){
+     $modal = 'modal-2'; 
+  }
+  elseif($name === 'image3'){ 
+    $modal = 'modal-3'; 
+  }
+  elseif($name === 'image4'){ 
+    $modal = 'modal-4'; 
+  }
+  elseif($name === 'image5'){ 
+    $modal = 'modal-5'; 
+  }
   $cImage = $currentImage ?? '' ;
   $cId = $currentId ?? '';
 
@@ -23,11 +33,7 @@
             @foreach ($images as $image)
             <div class="w-1/4 p-2 md:p-4">
             <div class="border rounded-md p-2 md:p-4">
-              <img class="image" data-id="{{ $name }}_{{ $image->id }}"
-              data-file="{{ $image->filename }}"
-              data-path="{{ asset('storage/products/') }}"
-              data-modal="{{ $modal }}"
-              src="{{ asset('storage/products/' . $image->filename) }}">
+              <img class="image" data-id="{{ $name }}_{{ $image->id }}" data-file="{{ $image->filename }}" data-path="{{ asset('storage/products/') }}" data-modal="{{ $modal }}" src="{{ asset('storage/products/' . $image->filename) }}">
                    <div class="text-gray-700">{{ $image->title }}</div>                      
             </div>
             </div>
@@ -43,7 +49,7 @@
 
   
   <div class="flex justify-around items-center mb-4">
-    <a class="py-2 px-2 mt-4 mx-auto bg-gray-500" data-micromodal-trigger="{{ $modal }}" href='javascript:;'>ファイルを選択</a>
+    <button class="py-2 px-2 mt-4 mx-auto bg-gray-500" data-micromodal-trigger="{{ $modal }}">ファイルを選択</button>
     <div class="w-1/4">
       <img id="{{ $name }}_thumbnail" @if($cImage) src="{{ asset('storage/products/' . $cImage) }}" @else src="" @endif>
     </div>
