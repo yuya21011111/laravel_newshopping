@@ -9,6 +9,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <!-- Validation Errors -->
             <x-auth-validation-errors class="flex justify-center items-center text-lg mb-4" :errors="$errors" />
+            <!-- toasterメッセージ -->  
+            <x-toastr status="session('status')" />
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <form method="post" action="{{ route('owner.products.update',['product' => $product->id]) }}">
@@ -138,6 +140,7 @@
         const images = document.querySelectorAll('.image');
         images.forEach(image => {
             image.addEventListener('click', (element) => {
+                element.preventDefault()
                 const imageName = element.target.dataset.id.substr(0, 6);
                 const imageId = element.target.dataset.id.replace(imageName + '_', '');
                 const imageFile = element.target.dataset.file;

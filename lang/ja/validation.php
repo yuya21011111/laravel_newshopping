@@ -171,6 +171,7 @@ return [
         'content' => '本文',
         'memo' => 'メモ',
         'price' => '価格',
+        'quantity' => '在庫数',
         'kana' => 'カナ',
         'tel' => '電話番号',
         'email' => 'メールアドレス',
