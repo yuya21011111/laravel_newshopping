@@ -45,7 +45,7 @@
                       <div class="flex justify-end">
                         <a href="#" data-id="{{$image->id}}" onclick="deletePost(this)" class="w-12 h-12  py-2 pl-1.5   bg-red-400 text-lg text-white font-semibold rounded-full hover:bg-red-500">削除</a>
                       </div>
-                      </form>
+                    </form>
                 </div>
             </div>
         </div>
@@ -57,5 +57,5 @@
             document.getElementById('delete_' + e.dataset.id).submit();
           }
         }
-      </script>
+    </script>
 </x-app-layout>

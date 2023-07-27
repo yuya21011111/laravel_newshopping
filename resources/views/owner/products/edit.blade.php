@@ -131,6 +131,13 @@
                             TOPへ戻る
                         </div>
                     </form>
+                    <form id="delete_{{$product->id}}" method="post" action="{{ route('owner.products.destroy' ,['product' => $product->id]) }}">
+                        @csrf
+                        @method('delete')
+                      <div class="flex justify-center">
+                        <a href="#" data-id="{{$product->id}}" onclick="deletePost(this)" class="w-12 h-12  py-2 pl-1.5   bg-red-400 text-lg text-white font-semibold rounded-full hover:bg-red-500">削除</a>
+                      </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -173,5 +180,14 @@
                 behavior: "smooth"
             });
         }
+
+        // 削除処理
+        function deletePost(e) {
+          'use stricr';
+          if(confirm('本当に削除してもいいですか？（2度と復元はできません）')){
+            document.getElementById('delete_' + e.dataset.id).submit();
+          }
+        }
+    
     </script>
 </x-app-layout>
