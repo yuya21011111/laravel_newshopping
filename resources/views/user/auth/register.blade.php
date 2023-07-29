@@ -46,6 +46,7 @@
             <x-text-input id="post" class="block mt-1 w-full"
                             type="text"
                             name="post"
+                            :value="old('post')" 
                             required />
 
             <x-input-error :messages="$errors->get('post')" class="mt-2" />
@@ -59,6 +60,7 @@
             <x-text-input id="addres" class="block mt-1 w-full"
                             type="text"
                             name="addres"
+                            :value="old('addres')" 
                             required />
 
             <x-input-error :messages="$errors->get('addres')" class="mt-2" />
@@ -71,6 +73,7 @@
             <x-text-input id="birthday" class="block mt-1 w-full"
                             type="date"
                             name="birthday"
+                            :value="old('birthday')" 
                             required />
 
             <x-input-error :messages="$errors->get('birthday')" class="mt-2" />
