@@ -6,6 +6,8 @@ namespace Database\Seeders;
 
 use App\Models\Image;
 use Illuminate\Database\Seeder;
+use App\Models\Product;
+use App\Models\Stock;
 
 class DatabaseSeeder extends Seeder
 {
@@ -31,5 +33,8 @@ class DatabaseSeeder extends Seeder
             // StockSeeder::class,
             UserSeeder::class,
         ]);
+        Product::factory(100)->create();
+        Stock::factory(100)->create();
+
     }
 }
