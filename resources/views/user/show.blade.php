@@ -100,6 +100,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="border-t border-gray-400 my-8">
+                    </div>
+                    <div class="mb-4 text-center text-black">この商品を販売しているショップ</div>
+                    <div class="mb-4 text-center text-black">{{ $product->shop->name }}</div>
+                    <div class="mb-4 text-center text-black">
+                        @if($product->shop->filename !== null)
+                        <img class="mx-auto w-40 h-40 object-cover rounded-full" src="{{ asset('storage/shops/' . $product->shop->filename) }}">
+                      @else 
+                        <img src="">
+                      @endif
+                    </div>
+                    <div class="mb-4 text-center">
+                        <button
+                        type="button" class=" text-white bg-yellow-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-700 rounded">詳細を見る</button>
+                       </button>
+                    </div>
                 </div>
             </div>
         </div>
