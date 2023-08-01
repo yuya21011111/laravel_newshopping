@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ItemController;
+use App\Http\Controllers\user\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,9 @@ Route::middleware('auth:users')
     ->name('items.show');
 });
 
-
+Route::prefix('cart')->middleware('auth:users')->group(function(){
+    Route::post('/add',[CartController::class,'add'])->name('cart.add');
+});
 
 // Route::get('/dashboard', function () {
 //     return view('user.dashboard');
