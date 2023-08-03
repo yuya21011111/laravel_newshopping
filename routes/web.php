@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ItemController;
-use App\Http\Controllers\user\CartController;
+use App\Http\Controllers\User\CartController;
 
 /*
 |--------------------------------------------------------------------------
