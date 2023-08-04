@@ -27,6 +27,8 @@ Route::middleware('auth:users')
     ->name('items.index');
     Route::get('show/{item}',[ItemController::class,'show'])
     ->name('items.show');
+    Route::post('delete/{item}',[CartController::class,'delete'])
+    ->name('cart.delete');
 });
 
 Route::prefix('cart')->middleware('auth:users')->group(function(){
