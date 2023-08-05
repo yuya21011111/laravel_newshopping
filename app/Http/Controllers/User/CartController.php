@@ -42,6 +42,23 @@ class CartController extends Controller
         return redirect()->route('user.cart.index');
     }
 
+    public function checkout() {
+        $user = User::findOrFail(Auth::id());
+        $products = $user->products;
+        $lineItems = [];
+        foreach($products as $product) {
+            $lineItem = [
+                'name' => $product->name,
+                'description' => $product->description,
+                'amount' => $product->price,
+                'currency' => 'jpy',
+                'quantity' => $product->pivot->quantity,
+            ];
+            array_push($lineItems,$lineItem);
+        }
+        dd($lineItems);
+    }
+
     public function delete($id) {
         Cart::where('product_id',$id)
         ->where('user_id',Auth::id())->delete();
