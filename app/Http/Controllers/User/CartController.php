@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Stock;
 
+
 class CartController extends Controller
 {
 
@@ -56,13 +57,18 @@ class CartController extends Controller
             }
             else {
                 $lineItem = [
-                    'name' => $product->name,
-                    'description' => $product->description,
-                    'amount' => $product->price,
-                    'currency' => 'jpy',
-                    'quantity' => $product->pivot->quantity,
-                ];
-                array_push($lineItems,$lineItem);
+                    'price_data' => [
+                        'unit_amount' => $product->price,
+                        'currency' => 'JPY',
+ 
+                    'product_data' => [
+                        'name' => $product->name,
+                        'description' => $product->information,
+                ],
+            ],
+                'quantity' => $product->pivot->quantity,
+            ];
+                array_push($lineItems, $lineItem);
             }
         }
 
@@ -74,7 +80,7 @@ class CartController extends Controller
             ]);
         }
 
-        dd('test');
+        
         \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
         $session = \Stripe\Checkout\Session::create([
             'payment_method_types' => ['card'],
