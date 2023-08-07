@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Stock;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -14,6 +15,20 @@ class ItemController extends Controller
     public function __construct()
     {
         $this->middleware('auth:users');
+
+        $this->middleware(function($request,$next) {
+            $id = $request->route()->parameter('item');
+            if(!is_null($id)) {
+                $productsOwnerId = Product::findOrFail($id)->shop->owner->id;
+                $productId = (int)$productsOwnerId;
+                $ownerId = Auth::id();
+                if($productId !== $ownerId){
+                    abort(404);
+                }
+            }
+            return $next($request);
+
+        });
     }
 
     public function index() {
