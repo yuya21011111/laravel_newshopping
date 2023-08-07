@@ -15,14 +15,14 @@ class ItemController extends Controller
     public function __construct()
     {
         $this->middleware('auth:users');
-
+        
+        // アイテムが存在しない場合は404エラー
         $this->middleware(function($request,$next) {
             $id = $request->route()->parameter('item');
             if(!is_null($id)) {
-                $productsOwnerId = Product::findOrFail($id)->shop->owner->id;
-                $productId = (int)$productsOwnerId;
+                $itemId =Product::availableItems()->where('products.id',$id)->exists();
                 $ownerId = Auth::id();
-                if($productId !== $ownerId){
+                if($itemId !== $ownerId){
                     abort(404);
                 }
             }
@@ -31,8 +31,12 @@ class ItemController extends Controller
         });
     }
 
-    public function index() {
-        $products = Product::availableItems()->get(); // ローカルスコープ
+    public function index(Request $request) {
+         // ローカルスコープ
+        $products = Product::availableItems()
+        ->sortOrder($request->sort)
+        ->get();
+
         return view('user.index',compact('products'));
     }
 
