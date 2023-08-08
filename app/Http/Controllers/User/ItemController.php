@@ -34,7 +34,7 @@ class ItemController extends Controller
          // ローカルスコープ
         $products = Product::availableItems()
         ->sortOrder($request->sort)
-        ->get();
+        ->paginate($request->pagination);
 
         return view('user.index',compact('products'));
     }

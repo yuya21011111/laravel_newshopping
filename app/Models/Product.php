@@ -103,11 +103,11 @@ class Product extends Model
         }
 
         if($sortOrder === \Constant::SORT_ORDER['later']){
-            return $query->orderBy('products_at','desc');
+            return $query->orderBy('products.created_at','desc');
         }
 
         if($sortOrder === \Constant::SORT_ORDER['older']){
-            return $query->orderBy('products_at','asc');
+            return $query->orderBy('products.created_at','asc');
         }
 
     }

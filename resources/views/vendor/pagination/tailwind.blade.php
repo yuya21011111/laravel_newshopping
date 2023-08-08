@@ -25,16 +25,16 @@
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div>
                 <p class="text-sm text-gray-700 leading-5">
-                    <span class="text-white font-medium">{{ $paginator->total() }}</span>
-                    <span class="text-white">件中</span>
+                    <span class="text-yellow-600 font-medium">{{ $paginator->total() }}</span>
+                    <span class="text-yellow-600">件中</span>
                     @if ($paginator->firstItem())
-                        <span class="text-white font-medium">{{ $paginator->firstItem() }}</span>
-                      <span class="text-white">件〜</span>
-                        <span class="text-white font-medium">{{ $paginator->lastItem() }}</span>
+                        <span class="text-yellow-600 font-medium">{{ $paginator->firstItem() }}</span>
+                      <span class="text-yellow-600">件〜</span>
+                        <span class="text-yellow-600 font-medium">{{ $paginator->lastItem() }}</span>
                     @else
                         {{ $paginator->count() }}
                     @endif
-                    <span class="text-white">件</span>
+                    <span class="text-yellow-600">件</span>
                 </p>
             </div>
 
