@@ -49,7 +49,7 @@
 
   
   <div class="flex justify-around items-center mb-4">
-    <a class="py-2 px-2 mt-4 mx-auto bg-gray-500" data-micromodal-trigger="{{ $modal }}">ファイルを選択</a>
+    <a class="py-2 px-2 mt-4 mx-auto bg-gray-500" data-micromodal-trigger="{{ $modal }}" href="javascript:;">ファイルを選択</a>
     <div class="w-1/4">
       <img id="{{ $name }}_thumbnail" @if($cImage) src="{{ asset('storage/products/' . $cImage) }}" @else src="" @endif>
     </div>
