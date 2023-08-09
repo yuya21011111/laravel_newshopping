@@ -8,6 +8,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Stock;
 use Illuminate\Support\Facades\Auth;
+use App\Models\PrimaryCategory;
 
 class ItemController extends Controller
 {
@@ -32,11 +33,13 @@ class ItemController extends Controller
 
     public function index(Request $request) {
          // ローカルスコープ
+         dd($request);
         $products = Product::availableItems()
         ->sortOrder($request->sort)
-        ->paginate($request->pagination);
+        ->paginate($request->pagination ?? '20');
+        $categories = PrimaryCategory::with('secondary')->get();
 
-        return view('user.index',compact('products'));
+        return view('user.index',compact('products','categories'));
     }
 
     public function show($id) {

@@ -1,11 +1,31 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-around items-center">
           <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
              商品一覧
           </h2>
-          <div> 
             <form method="get" action="{{ route('user.items.index') }}">
+             <div class="lg:flex lg:justify-around">
+                <div class="lg:flex items-center">
+                    <select name="category" class="mb-2 lg:mb-0 lg:mr-2">
+                        <option value="0">全て</option>
+                        @foreach ($categories as $category)
+                        <optgroup label="{{ $category->name }}">
+                            <option value="0">選択してください。</option>
+                            @foreach ($category->secondary as $secondary)
+                                <option value="{{ $secondary->id }}">
+                                    {{ $secondary->name }}
+                                </option>
+                            @endforeach
+                    @endforeach
+                    </select>
+                    <div class="flex space-x-2 items-center">
+                        <div><input name="keyword" class="border border-gray-500 py-2"  placeholder="キーワードを入力"></div>
+                        <div><button class="ml-auto  text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-700 rounded">検索</button></div>
+                    </div>
+                </div>
+                <div class="flex">
+                    
+                </div>
                 <div class="flex">
                     <div>
                         <span class="text-white text-sm">表示順</span><br>
@@ -63,11 +83,9 @@
                         </select>
                     </div>
                 </div>
+            </div>
             </form>
-          </div>
-        </div>
     </x-slot>
-
     {{-- <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
