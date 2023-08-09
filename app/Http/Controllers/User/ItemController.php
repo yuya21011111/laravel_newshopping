@@ -33,8 +33,8 @@ class ItemController extends Controller
 
     public function index(Request $request) {
          // ローカルスコープ
-         dd($request);
         $products = Product::availableItems()
+        ->selectCategory($request->category ?? '0')
         ->sortOrder($request->sort)
         ->paginate($request->pagination ?? '20');
         $categories = PrimaryCategory::with('secondary')->get();
