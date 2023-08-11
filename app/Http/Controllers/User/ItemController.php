@@ -54,4 +54,8 @@ class ItemController extends Controller
         }
         return view('user.show',compact('product','quantity'));
     }
+
+    public function welcome() {
+        return view('user.welcome');
+    }
 }

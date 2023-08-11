@@ -16,9 +16,12 @@ use App\Http\Controllers\User\CartController;
 |
 */
 
-Route::get('/', function () {
-    return view('user.welcome');
-});
+// Route::get('/', function () {
+//     return view('user.welcome');
+// });
+
+Route::get('/welcome',[ItemController::class,'welcome'])
+->name('items.welcome');
 
 
 Route::middleware('auth:users')
