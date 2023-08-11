@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\ItemController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\TopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +21,8 @@ use App\Http\Controllers\User\CartController;
 //     return view('user.welcome');
 // });
 
-Route::get('/welcome',[ItemController::class,'welcome'])
-->name('items.welcome');
+Route::get('/top',[TopController::class,'index'])
+->name('top.index');
 
 
 Route::middleware('auth:users')
